@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load i18n %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    {% bootstrap_messages %}
+    <h1 class="my-4">
+        {% trans "Staff" %}
+    </h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>{% trans "Fullname" %}</th>
+                <th>{% trans "Role" %}</th>
+                <th>{% trans "Supervisor" %}</th>
+                <th>{% trans "Date joined" %}</th>
+                <th>{% trans "Salary" %}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in object_list %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.full_name }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.boss }}</td>
+                <td>{{ user.date_joined|date:"F j, Y" }}</td>
+                <td>{{ user.salary }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
